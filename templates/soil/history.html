@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Your Soil Reports</h2>
+
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>pH</th>
+            <th>Crop Recommendation</th>
+            <th>View</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for report in reports %}
+
+        <tr>
+            <td>{{ report.created_at }}</td>
+            <td>{{ report.ph }}</td>
+            <td>{{ report.crop_recommendation }}</td>
+
+            <td>
+                <a href="{% url 'soil_result' report.pk %}" class="btn btn-sm btn-primary">
+                    View
+                </a>
+            </td>
+
+            <td>
+                <a href="{% url 'delete_soil_report' report.pk %}"
+                   class="btn btn-sm btn-danger"
+                   onclick="return confirm('Delete this report?');">
+                    Delete
+                </a>
+            </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="5">No reports yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

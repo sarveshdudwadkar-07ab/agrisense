@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<div class="card border-0 shadow-sm mb-5 overflow-hidden">
+
+    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef"
+         style="height:350px; object-fit:cover; width:100%;">
+
+    <div class="card-img-overlay d-flex align-items-center justify-content-center">
+
+        <div class="text-center text-white bg-dark bg-opacity-50 p-4 rounded">
+
+            <h1 class="fw-bold">AgriSense🌱</h1>
+
+            <p class="lead mb-3">
+                Smart Agriculture Platform for Modern Farmers
+            </p>
+
+            {% if not user.is_authenticated %}
+                <a href="{% url 'register' %}" class="btn btn-success btn-lg">
+                    Get Started
+                </a>
+            {% else %}
+                <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg">
+                    Go to Dashboard
+                </a>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ABOUT SECTION -->
+
+<div class="row mb-5">
+
+    <div class="col-md-6">
+
+        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399"
+             class="img-fluid rounded shadow">
+
+    </div>
+
+    <div class="col-md-6 d-flex align-items-center">
+
+        <div>
+
+            <h2 class="mb-3">Empowering Farmers with Technology</h2>
+
+            <p class="text-muted">
+                AgriSense helps farmers make better decisions using soil analysis,
+                AI assistance, crop recommendations and access to agricultural resources.
+            </p>
+
+            <p class="text-muted">
+                Our platform combines modern technology with agriculture to improve
+                productivity, sustainability and farmer knowledge.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- FEATURES SECTION -->
+
+<div class="text-center mb-4">
+    <h2>Platform Features</h2>
+</div>
+
+<div class="row g-4">
+
+    <!-- SOIL ANALYSIS -->
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 h-100 text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-droplet-fill text-success display-5"></i>
+
+                <h5 class="mt-3">Soil Analysis</h5>
+
+                <p class="text-muted small">
+                    Analyze soil nutrients and receive crop recommendations.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SOIL MAP -->
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 h-100 text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-geo-alt-fill text-primary display-5"></i>
+
+                <h5 class="mt-3">Soil Testing Map</h5>
+
+                <p class="text-muted small">
+                    Find nearby government approved soil testing centers.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MARKETPLACE -->
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 h-100 text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-cart-fill text-warning display-5"></i>
+
+                <h5 class="mt-3">Marketplace</h5>
+
+                <p class="text-muted small">
+                    Purchase fertilizers, seeds and farming products.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- AI ASSISTANT -->
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 h-100 text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-robot text-success display-5"></i>
+
+                <h5 class="mt-3">AI Farming Assistant</h5>
+
+                <p class="text-muted small">
+                    Ask farming questions and get intelligent recommendations.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- CALL TO ACTION -->
+
+<div class="text-center mt-5">
+
+    <h3>Start Improving Your Farming Today</h3>
+
+    <p class="text-muted">
+        Join AgriSense and use technology to make smarter agricultural decisions.
+    </p>
+
+    {% if not user.is_authenticated %}
+        <a href="{% url 'register' %}" class="btn btn-success btn-lg">
+            Create Free Account
+        </a>
+    {% else %}
+        <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg">
+            Go to Dashboard
+        </a>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}

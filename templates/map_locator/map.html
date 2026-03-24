@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="mb-3">🌱 Soil Testing Centres</h3>
+
+<div id="map" style="height: 550px; border-radius:12px;"></div>
+
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+
+// Simple map
+var map = L.map('map').setView([22.5937, 78.9629], 5);
+
+// Clean modern tiles (best choice)
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap & CartoDB',
+    subdomains: 'abcd',
+    maxZoom: 19
+}).addTo(map);
+
+
+// Add markers
+{% for center in centers %}
+
+L.marker([{{ center.latitude }}, {{ center.longitude }}])
+.bindPopup(`
+    <b>{{ center.name }}</b><br>
+    {{ center.address }}
+`)
+.addTo(map);
+
+{% endfor %}
+
+
+// Smooth locate user
+function locateUser() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+
+            map.flyTo([lat, lon], 12, { duration: 1.2 });
+
+            L.marker([lat, lon])
+            .addTo(map)
+            .bindPopup("📍 You are here")
+            .openPopup();
+        });
+    }
+}
+
+</script>
+
+<!-- Button -->
+<div class="mt-3">
+    <button class="btn btn-success" onclick="locateUser()">📍 Locate Me</button>
+</div>
+
+{% endblock %}

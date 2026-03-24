@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page-header">
+    <h3>Farming Marketplace</h3>
+    <p class="text-muted">Buy fertilizers, seeds and agricultural supplies.</p>
+</div>
+
+<div class="row g-4">
+
+{% for product in products %}
+
+<div class="col-md-4 col-lg-3">
+
+<div class="card h-100 shadow-sm border-0">
+
+<img src="{{ product.image }}" class="card-img-top" style="height:180px; object-fit:cover;">
+
+<div class="card-body">
+
+<h6>{{ product.name }}</h6>
+
+<p class="text-muted small">
+{{ product.description|truncatewords:12 }}
+</p>
+
+<h5 class="text-success">₹{{ product.price }}</h5>
+
+</div>
+
+<div class="card-footer bg-white border-0">
+
+<a href="{% url 'add_to_cart' product.id %}" class="btn btn-success w-100">
+
+<i class="bi bi-cart"></i>
+Add to Cart
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<div class="mt-4">
+
+<a href="{% url 'cart_view' %}" class="btn btn-dark">
+
+<i class="bi bi-bag"></i>
+View Cart
+
+</a>
+
+</div>
+
+{% endblock %}

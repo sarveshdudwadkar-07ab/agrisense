@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page-header">
+    <h3 class="mb-1">Soil Analysis</h3>
+    <p class="text-muted mb-0">
+        Enter your soil parameters to receive crop recommendations.
+    </p>
+</div>
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm border-0 p-4">
+
+            <h5 class="mb-4">
+                <i class="bi bi-droplet-half text-success"></i>
+                Soil Parameters
+            </h5>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">pH Level</label>
+                    {{ form.ph }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nitrogen</label>
+                    {{ form.nitrogen }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Phosphorus</label>
+                    {{ form.phosphorus }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Potassium</label>
+                    {{ form.potassium }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Organic Carbon</label>
+                    {{ form.organic_carbon }}
+                </div>
+
+                <button type="submit" class="btn btn-success w-100 mt-3">
+                    <i class="bi bi-graph-up"></i>
+                    Analyze Soil
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

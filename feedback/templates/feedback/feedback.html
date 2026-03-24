@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row">
+
+        <!-- Feedback Form -->
+        <div class="col-md-5">
+
+            <div class="card shadow border-0 p-4">
+
+                <h4 class="mb-3">
+                    ⭐ Farmer Feedback
+                </h4>
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label">Rating</label>
+                        {{ form.rating }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Message</label>
+                        {{ form.message }}
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">
+                        Submit Feedback
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- Feedback List -->
+        <div class="col-md-7">
+
+            <h4 class="mb-3">What Farmers Say</h4>
+
+            {% for feedback in feedbacks %}
+
+            <div class="card shadow-sm border-0 mb-3 p-3">
+
+                <div class="d-flex justify-content-between">
+
+                    <strong>
+                        {{ feedback.user.username }}
+                    </strong>
+
+                    <span class="text-warning">
+                        {{ feedback.rating }} ⭐
+                    </span>
+
+                </div>
+
+                <p class="mt-2 mb-1">
+                    {{ feedback.message }}
+                </p>
+
+                <small class="text-muted">
+                    {{ feedback.created_at }}
+                </small>
+
+            </div>
+
+            {% empty %}
+
+            <p>No feedback yet.</p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

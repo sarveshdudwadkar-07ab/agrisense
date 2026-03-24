@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- FARM BANNER -->
+
+<div class="card border-0 shadow-sm mb-4 overflow-hidden">
+
+    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef"
+         style="height:220px; object-fit:cover; width:100%;">
+
+    <div class="card-img-overlay d-flex align-items-end">
+
+        <div class="bg-dark bg-opacity-50 text-white p-3 rounded">
+
+            <h4 class="mb-1">Welcome to AgriSense 🌱</h4>
+
+            <small>
+                Smart tools for soil analysis, crop planning and modern farming.
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PAGE HEADER -->
+
+<div class="page-header d-flex justify-content-between align-items-center">
+
+<div>
+    <h3 class="mb-1">Welcome, {{ user.username }}</h3>
+    <p class="text-muted mb-0">Role: {{ user.role|title }}</p>
+</div>
+
+<div class="text-end">
+    <small class="text-muted">Smart Agriculture Platform</small>
+    <h6 class="mb-0">AgriSense Dashboard</h6>
+</div>
+
+</div>
+
+
+<!-- WEATHER CARD -->
+
+{% if weather %}
+
+<div class="card border-0 shadow-sm mb-4">
+
+<div class="card-body d-flex justify-content-between align-items-center">
+
+<div>
+    <h6 class="text-muted mb-1">
+        <i class="bi bi-cloud-sun"></i> Weather in {{ weather.city }}
+    </h6>
+
+    <h4 class="mb-0">{{ weather.temperature }}°C</h4>
+
+    <small class="text-muted text-capitalize">
+        {{ weather.condition }}
+    </small>
+</div>
+
+<div class="text-end">
+    <h6 class="mb-1">Humidity</h6>
+    <span class="badge bg-success fs-6">
+        {{ weather.humidity }}%
+    </span>
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+
+<!-- DASHBOARD CARDS -->
+
+<div class="row g-4">
+
+<!-- SOIL ANALYSIS -->
+<div class="col-md-6 col-lg-3">
+
+<div class="card h-100 shadow border-0 hover-card">
+
+<div class="card-body text-center">
+
+<i class="bi bi-droplet-fill text-success display-5"></i>
+
+<h6 class="mt-3">Soil Analysis</h6>
+
+<p class="text-muted small">
+Upload soil parameters and receive crop recommendations.
+</p>
+
+<a href="{% url 'upload_soil' %}" class="btn btn-success btn-sm w-100">
+Analyze Soil
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SOIL HISTORY -->
+<div class="col-md-6 col-lg-3">
+
+<div class="card h-100 shadow border-0 hover-card">
+
+<div class="card-body text-center">
+
+<i class="bi bi-clock-history text-dark display-5"></i>
+
+<h6 class="mt-3">Soil Reports</h6>
+
+<p class="text-muted small">
+View all your previous soil analysis reports.
+</p>
+
+<a href="{% url 'soil_history' %}" class="btn btn-dark btn-sm w-100">
+View Reports
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SOIL TESTING CENTRES -->
+<div class="col-md-6 col-lg-3">
+
+<div class="card h-100 shadow border-0 hover-card">
+
+<div class="card-body text-center">
+
+<i class="bi bi-geo-alt-fill text-primary display-5"></i>
+
+<h6 class="mt-3">Testing Centres</h6>
+
+<p class="text-muted small">
+Locate government approved soil testing labs.
+</p>
+
+<a href="{% url 'soil_map' %}" class="btn btn-primary btn-sm w-100">
+View Map
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- MARKETPLACE -->
+<div class="col-md-6 col-lg-3">
+
+<div class="card h-100 shadow border-0 hover-card">
+
+<div class="card-body text-center">
+
+<i class="bi bi-cart-fill text-warning display-5"></i>
+
+<h6 class="mt-3">Marketplace</h6>
+
+<p class="text-muted small">
+Buy fertilizers and seeds recommended for your farm.
+</p>
+
+<a href="{% url 'product_list' %}" class="btn btn-warning btn-sm w-100">
+Visit Store
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- AI FARMING ASSISTANT -->
+<div class="col-md-6 col-lg-3">
+
+<div class="card h-100 shadow border-0 hover-card">
+
+<div class="card-body text-center">
+
+<i class="bi bi-robot text-success display-5"></i>
+
+<h6 class="mt-3">AI Farming Assistant</h6>
+
+<p class="text-muted small">
+Ask farming questions, upload plant images and get AI guidance.
+</p>
+
+<a href="/chatbot/" class="btn btn-success btn-sm w-100">
+Open Assistant
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FARMER FEEDBACK -->
+<div class="col-md-6 col-lg-3">
+
+<div class="card h-100 shadow border-0 hover-card">
+
+<div class="card-body text-center">
+
+<i class="bi bi-chat-dots-fill text-primary display-5"></i>
+
+<h6 class="mt-3">Farmer Feedback</h6>
+
+<p class="text-muted small">
+Share your experience and help improve AgriSense.
+</p>
+
+<a href="{% url 'feedback' %}" class="btn btn-primary btn-sm w-100">
+Give Feedback
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+{% endblock %}
